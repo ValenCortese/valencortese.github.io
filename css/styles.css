@@ -1,0 +1,500 @@
+/* =========================
+   Variables globales (dark mode)
+   ========================= */
+:root {
+  --bg: #0f1117;
+  --bg-elevated: #171b24;
+  --bg-elevated-2: #1d2330;
+  --text: #e9edf4;
+  --text-muted: #aab4c5;
+  --primary: #7c9cff;
+  --primary-strong: #9bb3ff;
+  --border: #2a3243;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   Base / Reset
+   ========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: 0 auto;
+}
+
+.section {
+  padding: 4.5rem 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0 0 0.8rem;
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2rem);
+  margin-bottom: 1.6rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+/* =========================
+   Componentes reutilizables
+   ========================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.65rem;
+  padding: 0.72rem 1.1rem;
+  font-weight: 600;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn:hover,
+.btn:focus-visible {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #0c1020;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background: var(--primary-strong);
+}
+
+.btn-ghost {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  background: var(--bg-elevated);
+}
+
+.card {
+  background: linear-gradient(180deg, var(--bg-elevated), var(--bg-elevated-2));
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.badge-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.badge {
+  background: rgba(124, 156, 255, 0.12);
+  border: 1px solid rgba(124, 156, 255, 0.38);
+  color: #d4ddff;
+  font-size: 0.86rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+}
+
+/* =========================
+   Header / Navegación
+   ========================= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(8px);
+  background: rgba(15, 17, 23, 0.82);
+  border-bottom: 1px solid rgba(42, 50, 67, 0.7);
+}
+
+.nav-wrapper {
+  min-height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: 0.2px;
+}
+
+.menu-toggle {
+  width: 2.7rem;
+  height: 2.7rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.24rem;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 99px;
+  background: var(--text);
+}
+
+.main-nav {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  margin: 0 auto;
+  width: min(1100px, 92%);
+  background: rgba(20, 24, 33, 0.98);
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  padding: 0.9rem;
+  display: none;
+}
+
+.main-nav.open {
+  display: block;
+}
+
+.main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.25rem;
+}
+
+.main-nav ul a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  padding: 0.45rem 0.4rem;
+  border-radius: 0.4rem;
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.main-nav ul a:hover,
+.main-nav ul a:focus-visible,
+.main-nav ul a.active {
+  color: var(--text);
+  background: rgba(124, 156, 255, 0.12);
+}
+
+.btn-cv-nav {
+  margin-top: 0.8rem;
+  width: 100%;
+}
+
+/* =========================
+   Hero
+   ========================= */
+.hero {
+  padding-top: 5.2rem;
+}
+
+.hero-content {
+  max-width: 760px;
+}
+
+.eyebrow {
+  color: var(--primary-strong);
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  font-weight: 700;
+  font-size: 0.76rem;
+}
+
+.hero h1 {
+  font-size: clamp(2rem, 8vw, 3rem);
+}
+
+.role {
+  color: var(--text-muted);
+  font-size: clamp(1.05rem, 3vw, 1.22rem);
+}
+
+.bio {
+  max-width: 68ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.2rem;
+}
+
+/* =========================
+   Proyectos
+   ========================= */
+.projects-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-card {
+  padding: 1.15rem;
+}
+
+.project-role {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.project-details {
+  padding-left: 1.1rem;
+  margin: 0 0 1rem;
+}
+
+.project-link {
+  display: inline-flex;
+  margin-top: 1rem;
+  color: var(--primary-strong);
+  font-weight: 600;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  text-decoration: underline;
+}
+
+/* =========================
+   Habilidades
+   ========================= */
+.skills-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.skill-group {
+  padding: 1rem;
+}
+
+.soft-skills {
+  margin-top: 1.2rem;
+}
+
+.soft-skills h3 {
+  margin-bottom: 0.35rem;
+}
+
+.soft-skills p {
+  color: var(--text-muted);
+}
+
+/* =========================
+   Educación y Experiencia
+   ========================= */
+
+.timeline-column {
+  padding: 1.1rem;
+}
+
+.timeline-single {
+  width: 100%;
+}
+
+.timeline-item {
+  padding: 0.8rem 0 0.8rem 1rem;
+  border-left: 2px solid rgba(124, 156, 255, 0.35);
+}
+
+.timeline-item + .timeline-item {
+  margin-top: 0.5rem;
+}
+
+.timeline-title,
+.timeline-meta {
+  color: var(--text-muted);
+}
+
+.timeline-description {
+  margin-bottom: 0;
+}
+
+
+
+/* =========================
+   Contacto
+   ========================= */
+.contact-box {
+  text-align: center;
+  padding: 1.4rem;
+}
+
+.contact-box .btn {
+  margin: 0.45rem 0 0.4rem;
+}
+
+.social-links {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.7rem;
+  border-radius: 0.6rem;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--text);
+  border-color: rgba(124, 156, 255, 0.5);
+  background: rgba(124, 156, 255, 0.1);
+}
+
+.social-links svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+}
+
+/* =========================
+   Footer
+   ========================= */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 1.1rem 0 1.7rem;
+  color: var(--text-muted);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+.footer-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.footer-links a:hover,
+.footer-links a:focus-visible {
+  color: var(--text);
+}
+
+/* =========================
+   Micro-interacción de entrada
+   ========================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   Breakpoints responsive
+   ========================= */
+@media (min-width: 720px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .skills-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
+
+@media (min-width: 960px) {
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    position: static;
+    width: auto;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    padding: 0;
+  }
+
+  .main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .btn-cv-nav {
+    margin: 0;
+    width: auto;
+  }
+}
