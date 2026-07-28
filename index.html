@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portafolio de Valentino Cortese, estudiante de Tecnología de la Información y desarrollador enfocado en backend."
+      content="Portafolio de Valentino Cortese, estudiante de Tecnología de la Información y desarrollador fullstack."
     />
     <title>Valentino Cortese | Portafolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -59,7 +59,7 @@
           <p class="role">Estudiante de Tecnología de la Información</p>
           <p class="bio">
             Desarrollador con conocimientos en JavaScript, Node.js, Express y SQL, enfocado en
-            el desarrollo de APIs y aplicaciones backend. Me caracterizo por mi capacidad para
+            el desarrollo de APIs y aplicaciones fullstack. Me caracterizo por mi capacidad para
             resolver problemas, adaptarme a nuevos desafíos y aprender continuamente. Me interesa
             construir soluciones escalables y seguir aprendiendo inteligencia artificial y
             tecnologías modernas. Busco incorporarme a mi primera experiencia profesional para
@@ -297,7 +297,21 @@
         <div class="container contact-box card">
           <h2>Contacto</h2>
           <p>¿Hablamos? Estoy abierto a oportunidades y colaboraciones.</p>
-          <a class="btn btn-primary" href="mailto:valen4002@gmail.com">valen4002@gmail.com</a>
+          <div class="contact-email-row" aria-label="Email de contacto">
+            <input class="contact-email-value" type="text" value="valen4002@gmail.com" readonly aria-label="Correo electrónico" />
+
+            <a class="contact-email-action" href="mailto:valen4002@gmail.com" title="Enviar email" aria-label="Enviar email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.6 11.05 20.9 3.1c.88-.38 1.76.51 1.39 1.39l-7.95 18.3c-.4.93-1.76.83-2.03-.14l-1.78-6.37-6.37-1.78c-.97-.27-1.07-1.63-.14-2.03Zm3.84 1.58 5.18 1.45 1.45 5.18 5.67-13.05-13.05 5.67Z" />
+              </svg>
+            </a>
+
+            <button class="contact-email-action" type="button" data-copy-email data-email="valen4002@gmail.com" title="Copiar email" aria-label="Copiar email">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M8 3.25h9.25a2.5 2.5 0 0 1 2.5 2.5V15a2.5 2.5 0 0 1-2.5 2.5H8A2.5 2.5 0 0 1 5.5 15V5.75A2.5 2.5 0 0 1 8 3.25Zm0 1.75a.75.75 0 0 0-.75.75V15c0 .41.34.75.75.75h9.25A.75.75 0 0 0 18 15V5.75a.75.75 0 0 0-.75-.75H8Zm-4 3.5h.75v1.75H4.75a.75.75 0 0 0-.75.75v9.25c0 .41.34.75.75.75H14a.75.75 0 0 0 .75-.75v-.75h1.75V20a2.5 2.5 0 0 1-2.5 2.5H4.75a2.5 2.5 0 0 1-2.5-2.5v-9.25a2.5 2.5 0 0 1 2.5-2.5Z" />
+              </svg>
+            </button>
+          </div>
 
           <div class="social-links" aria-label="Redes de contacto">
             <a

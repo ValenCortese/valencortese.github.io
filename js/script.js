@@ -90,4 +90,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sections.forEach((section) => sectionObserver.observe(section));
   }
+
+  const copyEmailButton = document.querySelector("[data-copy-email]");
+
+  if (copyEmailButton) {
+    copyEmailButton.addEventListener("click", async () => {
+      const email = copyEmailButton.dataset.email;
+
+      if (!email) {
+        return;
+      }
+
+      await navigator.clipboard.writeText(email);
+      copyEmailButton.classList.add("is-copied");
+
+      window.setTimeout(() => {
+        copyEmailButton.classList.remove("is-copied");
+      }, 1200);
+    });
+  }
 });
