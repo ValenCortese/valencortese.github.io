@@ -7,9 +7,16 @@ Sitio web personal desarrollado con **HTML5, CSS3 y JavaScript vanilla (ES6+)**,
 ```text
 portafolio/
 ├── index.html
+├── proyectos.html
 ├── README.md
 ├── assets/
-│   └── CV.pdf
+│   └── foto.jpg
+│   └── sc1.png
+│   └── sc2.jpg
+│   └── sc3.jpg
+│   └── sc4.jpg
+│   └── sc5.jpg
+│   └── ValentinoCorteseCV.pdf
 ├── css/
 │   └── styles.css
 └── js/
