@@ -315,7 +315,6 @@ p {
 }
 
 .project-details {
-  padding-left: 1.1rem;
   margin: 0 0 1rem;
 }
 
@@ -625,3 +624,143 @@ p {
     width: auto;
   }
 }
+/* Custom styles extracted from inline <style> blocks in HTML files
+   Moved here to centralize styles and follow best practices */
+
+/* Projects layout: vertical list, each project uses full container width */
+.projects-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* project card layout */
+.project-card .project-layout {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+/* info and media columns */
+.project-card .project-info {
+  flex: 1 1 60%;
+  min-width: 0;
+}
+
+.project-card .project-media {
+  flex: 0 0 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Slider styles */
+.slider {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.slides {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  border-radius: 10px;
+  min-height: 420px;
+  height: 420px;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.slide.active {
+  display: flex;
+}
+
+.slides img {
+  width: auto;
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.project-media { flex: 0 0 40%; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+
+.slider-control {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 3;
+}
+
+.slider-control:focus { outline: 2px solid rgba(255,255,255,0.8); }
+
+.slider-control.prev { left: 8px; }
+.slider-control.next { right: 8px; }
+
+/* small thumbnails spacing fallback when JS disabled */
+.media-gallery {
+  display: flex;
+  gap: 0.75rem;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.media-gallery img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+  flex: 1 1 auto;
+}
+
+/* if project-media is absent, project-info will take full width naturally.
+   Make sure links and badges keep layout */
+.project-card .badge-list { margin-top: 1rem; }
+
+/* responsive: stack on small screens */
+@media (max-width: 800px) {
+  .project-card .project-layout {
+    flex-direction: column;
+  }
+  .project-card .project-media {
+    width: 100%;
+  }
+  .media-gallery, .slides { overflow-x: auto; }
+  .slider-control.prev, .slider-control.next { display: none; }
+}
+
+/* 'Ver más' button container */
+.more-projects {
+  display:flex;
+  justify-content:center;
+  margin-top: 2rem;
+}
+.more-projects .btn {
+  padding: 0.75rem 1.25rem;
+}
+
+/* Basic project layout and slider variants from proyectos.html (kept for compatibility) */
+.back-link { display:inline-block; margin-bottom:1rem; }

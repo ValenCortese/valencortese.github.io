@@ -109,4 +109,73 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 1200);
     });
   }
+
+  const sliders = document.querySelectorAll('[data-slider]');
+  sliders.forEach((slider) => {
+    const slides = Array.from(slider.querySelectorAll('.slide'));
+    if (slides.length === 0) return;
+
+    let currentIndex = 0;
+    const prevButton = slider.querySelector('.slider-control.prev');
+    const nextButton = slider.querySelector('.slider-control.next');
+
+    const showSlide = (index) => {
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle('active', slideIndex === index);
+      });
+    };
+
+    slides.forEach((slide, slideIndex) => {
+      slide.classList.remove('active');
+      if (slideIndex === 0) {
+        slide.classList.add('active');
+      }
+      const img = slide.querySelector('img');
+      if (img) {
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '100%';
+        img.style.height = 'auto';
+        img.style.objectFit = 'contain';
+        img.style.display = 'block';
+        img.draggable = false;
+      }
+    });
+
+    const showPrevious = () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      showSlide(currentIndex);
+    };
+
+    const showNext = () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+    };
+
+    if (prevButton) {
+      prevButton.addEventListener('click', showPrevious);
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', showNext);
+    }
+
+    slider.tabIndex = 0;
+    slider.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        showPrevious();
+      } else if (event.key === 'ArrowRight') {
+        showNext();
+      }
+    });
+
+    slides.forEach((slide) => {
+      const img = slide.querySelector('img');
+      if (img && !img.complete) {
+        img.addEventListener('load', () => showSlide(currentIndex));
+        img.addEventListener('error', () => showSlide(currentIndex));
+      }
+    });
+
+    showSlide(currentIndex);
+  });
 });
