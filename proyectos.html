@@ -8,20 +8,45 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script>
+      (function () {
+        const STORAGE_KEY = 'site-theme';
+        let theme = null;
+        try {
+          theme = localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+          // ignore
+        }
+        if (!theme && window.matchMedia) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (theme) {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
     <header class="site-header" id="inicio">
       <div class="container nav-wrapper">
-        <a href="index.html" class="brand" aria-label="Ir al inicio">
-          Valentino Cortese
-        </a>
+        <a href="index.html" class="brand" data-i18n="brand.home" data-i18n-attr="aria-label">Valentino Cortese</a>
+
+        <div class="header-controls">
+          <button id="theme-toggle" class="theme-toggle" type="button" data-i18n="btn.theme_toggle" data-i18n-attr="title,aria-label" aria-pressed="false">🌙</button>
+
+          <label for="lang-select" class="visually-hidden" data-i18n="language.label">Idioma</label>
+          <select id="lang-select" data-i18n="language.label" data-i18n-attr="aria-label,title">
+            <option value="es">ES</option>
+            <option value="en">EN</option>
+          </select>
+        </div>
       </div>
-  </header>
+    </header>
   <main>
       <div class="container">
-        <a class="back-link" href="index.html">‹ Volver al inicio</a>
-        <h1>Proyectos</h1>
+        <a class="back-link" href="index.html" data-i18n="projects.back">‹ Volver al inicio</a>
+        <h1 data-i18n="projects.title">Proyectos</h1>
 
         <div class="projects-grid" style="margin-bottom: 2.5rem;">
           <!-- SportConnection -->
@@ -29,30 +54,30 @@
             <div class="project-layout">
               <div class="project-info">
                 <div class="project-header">
-                  <h3>SportConnection</h3>
-                  <p class="project-role">Full Stack Developer</p>
+                  <h3 data-i18n="project1.title">SportConnection</h3>
+                  <p class="project-role" data-i18n="project1.role">Full Stack Developer</p>
                 </div>
                 <div class="project-details">
-                  <p>
+                  <p data-i18n="project1.description">
                     Aplicación móvil y web diseñada para conectar deportistas con talento y equipos profesionales. Facilita el proceso de descubrimiento, evaluación y contratación mediante un sistema intuitivo que permite a ambas partes encontrar su match perfecto.
                   </p>
                 </div>
                 <div class="badge-list">
-                  <span class="badge">Node.js</span>
-                  <span class="badge">Express</span>
-                  <span class="badge">Supabase</span>
-                  <span class="badge">Java</span>
+                  <span class="badge" data-i18n="project1.badge1">Node.js</span>
+                  <span class="badge" data-i18n="project1.badge2">Express</span>
+                  <span class="badge" data-i18n="project1.badge3">Supabase</span>
+                  <span class="badge" data-i18n="project1.badge4">Java</span>
                 </div>
-                <a class="project-link" href="https://sport-connection.vercel.app" target="_blank" rel="noopener noreferrer">Ver proyecto</a>
+                <a class="project-link" href="https://sport-connection.vercel.app" target="_blank" rel="noopener noreferrer" data-i18n="project1.view_link">Ver proyecto</a>
                 <br />
-                <a class="project-link" href="https://github.com/Valen178/sc_back" target="_blank" rel="noopener noreferrer">Ver repositorio backend</a>
+                <a class="project-link" href="https://github.com/Valen178/sc_back" target="_blank" rel="noopener noreferrer" data-i18n="project1.backend_link">Ver repositorio backend</a>
                 <br />
-                <a class="project-link" href="http://github.com/Valen178/sc_mobile" target="_blank" rel="noopener noreferrer">Ver repositorio móvil</a>
+                <a class="project-link" href="http://github.com/Valen178/sc_mobile" target="_blank" rel="noopener noreferrer" data-i18n="project1.mobile_link">Ver repositorio móvil</a>
               </div>
 
               <div class="project-media">
                 <div class="slider" data-slider>
-                  <button class="slider-control prev" aria-label="Anterior imagen">‹</button>
+                  <button class="slider-control prev" data-i18n="slider.prev" data-i18n-attr="aria-label" aria-label="Anterior imagen">‹</button>
                   <div class="slides">
                    <div class="slide"><img src="assets/sc1.png" alt="SportConnection preview 1" /></div>
                    <div class="slide"><img src="assets/sc2.jpg" alt="SportConnection preview 2" /></div>
@@ -60,7 +85,7 @@
                    <div class="slide"><img src="assets/sc4.jpg" alt="SportConnection preview 4" /></div>
                    <div class="slide"><img src="assets/sc5.jpg" alt="SportConnection preview 5" /></div>
                   </div>
-                  <button class="slider-control next" aria-label="Siguiente imagen">›</button>
+                  <button class="slider-control next" data-i18n="slider.next" data-i18n-attr="aria-label" aria-label="Siguiente imagen">›</button>
                 </div>
               </div>
             </div>
@@ -71,24 +96,24 @@
             <div class="project-layout">
               <div class="project-info">
                 <div class="project-header">
-                  <h3>Pokemon API</h3>
-                  <p class="project-role">Backend &amp; DevOps</p>
+                  <h3 data-i18n="project2.title">Pokemon API</h3>
+                  <p class="project-role" data-i18n="project2.role">Backend &amp; DevOps</p>
                 </div>
                 <ul class="project-details">
-                  <li>Desarrollo de API REST con Node.js y Express.</li>
-                  <li>Docker, Docker Compose y despliegue automatizado mediante GitHub Actions.</li>
-                  <li>Testing con Jest y Supertest.</li>
-                  <li>Observabilidad con OpenTelemetry + Grafana Cloud.</li>
+                  <li data-i18n="project2.detail1">Desarrollo de API REST con Node.js y Express.</li>
+                  <li data-i18n="project2.detail2">Docker, Docker Compose y despliegue automatizado mediante GitHub Actions.</li>
+                  <li data-i18n="project2.detail3">Testing con Jest y Supertest.</li>
+                  <li data-i18n="project2.detail4">Observabilidad con OpenTelemetry + Grafana Cloud.</li>
                 </ul>
                 <div class="badge-list">
-                  <span class="badge">Node.js</span>
-                  <span class="badge">Express</span>
-                  <span class="badge">Docker</span>
-                  <span class="badge">GitHub Actions</span>
-                  <span class="badge">Jest</span>
-                  <span class="badge">OpenTelemetry</span>
+                  <span class="badge" data-i18n="project2.badge1">Node.js</span>
+                  <span class="badge" data-i18n="project2.badge2">Express</span>
+                  <span class="badge" data-i18n="project2.badge3">Docker</span>
+                  <span class="badge" data-i18n="project2.badge4">GitHub Actions</span>
+                  <span class="badge" data-i18n="project2.badge5">Jest</span>
+                  <span class="badge" data-i18n="project2.badge6">OpenTelemetry</span>
                 </div>
-                <a class="project-link" href="https://github.com/ValenCortese/node-devops-rest-api" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+                <a class="project-link" href="https://github.com/ValenCortese/node-devops-rest-api" target="_blank" rel="noopener noreferrer" data-i18n="project2.link">Ver repositorio</a>
               </div>
             </div>
           </article>
@@ -98,20 +123,20 @@
             <div class="project-layout">
               <div class="project-info">
                 <div class="project-header">
-                  <h3>Portafolio personal — Sitio web</h3>
-                  <p class="project-role">Frontend</p>
+                  <h3 data-i18n="project3.title">Portafolio personal — Sitio web</h3>
+                  <p class="project-role" data-i18n="project3.role">Frontend</p>
                 </div>
                 <div class="project-details">
-                  <p>
+                  <p data-i18n="project3.description">
                     Este mismo portafolio está construido con HTML, CSS y JavaScript, mostrando proyectos, experiencia y contacto. Diseñado para ser responsivo y accesible, con interacciones suaves y un pequeño sistema de componentes reutilizables.
                   </p>
                 </div>
                 <div class="badge-list">
-                  <span class="badge">HTML</span>
-                  <span class="badge">CSS</span>
-                  <span class="badge">JavaScript</span>
+                  <span class="badge" data-i18n="project3.badge1">HTML</span>
+                  <span class="badge" data-i18n="project3.badge2">CSS</span>
+                  <span class="badge" data-i18n="project3.badge3">JavaScript</span>
                 </div>
-                <a class="project-link" href="https://github.com/ValenCortese/valencortese.github.io" target="_blank" rel="noopener noreferrer">Ver repositorio</a>
+                <a class="project-link" href="https://github.com/ValenCortese/valencortese.github.io" target="_blank" rel="noopener noreferrer" data-i18n="project3.link">Ver repositorio</a>
               </div>
             </div>
           </article>
@@ -125,14 +150,13 @@
       <div class="container footer-content">
         <p>© <span id="current-year"></span> Valentino Cortese</p>
         <div class="footer-links">
-          <a href="mailto:valen4002@gmail.com">Email</a>
-          <a href="https://github.com/ValenCortese" target="_blank" rel="noopener noreferrer">
-            GitHub
-          </a>
+          <a href="mailto:valen4002@gmail.com" data-i18n="footer.email">Email</a>
+          <a href="https://github.com/ValenCortese" target="_blank" rel="noopener noreferrer" data-i18n="footer.github">GitHub</a>
           <a
             href="https://www.linkedin.com/in/valentinocortese/"
             target="_blank"
             rel="noopener noreferrer"
+            data-i18n="footer.linkedin"
           >
             LinkedIn
           </a>
@@ -140,6 +164,9 @@
       </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/language.js"></script>
+    <script src="js/app.js"></script>
   </body>
 </html>

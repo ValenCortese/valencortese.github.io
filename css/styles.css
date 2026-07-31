@@ -1,16 +1,75 @@
 /* =========================
-   Variables globales (dark mode)
+   Variables globales (tema claro por defecto)
    ========================= */
 :root {
+  /* Colores para tema claro (valores por defecto) */
+  --bg: #fbfbfd;
+  --bg-elevated: #ffffff;
+  --bg-elevated-2: #f2f4f8;
+  --surface: #ffffff;
+  --surface-strong: #f2f4f8;
+  --surface-overlay: rgba(255, 255, 255, 0.82);
+  --text: #0c1020;
+  --text-muted: #52607a;
+  --primary: #2563eb;
+  --primary-strong: #2b6ef6;
+  --primary-soft: rgba(37, 99, 235, 0.12);
+  --border: #e6e9f2;
+  --shadow: 0 8px 24px rgba(14, 22, 40, 0.06);
+  --btn-primary-text: #0c1020;
+}
+
+/* Variables para tema oscuro (override) */
+:root[data-theme="dark"],
+html[data-theme="dark"] {
   --bg: #0f1117;
   --bg-elevated: #171b24;
   --bg-elevated-2: #1d2330;
+  --surface: #171b24;
+  --surface-strong: #1d2330;
+  --surface-overlay: rgba(15, 17, 23, 0.72);
   --text: #e9edf4;
   --text-muted: #aab4c5;
   --primary: #7c9cff;
   --primary-strong: #9bb3ff;
+  --primary-soft: rgba(124, 156, 255, 0.12);
   --border: #2a3243;
   --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  --btn-primary-text: #0c1020;
+}
+
+/* Preferencia del sistema: si usuario no eligió, el navegador puede aplicar tema */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg: #0f1117;
+    --bg-elevated: #171b24;
+    --bg-elevated-2: #1d2330;
+    --text: #e9edf4;
+    --text-muted: #aab4c5;
+    --primary: #7c9cff;
+    --primary-strong: #9bb3ff;
+    --border: #2a3243;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Transiciones suaves entre temas (aplicar a los elementos que usan variables) */
+:root,
+html {
+  transition: background-color 220ms ease, color 220ms ease;
+}
+
+body,
+.card,
+.site-header,
+.main-nav,
+.contact-email-row,
+.hero-photo-frame,
+.btn,
+#lang-select,
+.theme-toggle,
+.contact-email-action {
+  transition: background-color 220ms ease, color 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
 }
 
 /* =========================
@@ -98,7 +157,7 @@ p {
 
 .btn-primary {
   background: var(--primary);
-  color: #0c1020;
+  color: var(--btn-primary-text);
 }
 
 .btn-primary:hover,
@@ -130,9 +189,9 @@ p {
 }
 
 .badge {
-  background: rgba(124, 156, 255, 0.12);
-  border: 1px solid rgba(124, 156, 255, 0.38);
-  color: #d4ddff;
+  background: var(--primary-soft);
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  color: var(--text);
   font-size: 0.86rem;
   padding: 0.3rem 0.6rem;
   border-radius: 999px;
@@ -146,22 +205,70 @@ p {
   top: 0;
   z-index: 20;
   backdrop-filter: blur(8px);
-  background: rgba(15, 17, 23, 0.82);
-  border-bottom: 1px solid rgba(42, 50, 67, 0.7);
+  background: var(--surface-overlay);
+  border-bottom: 1px solid var(--border);
 }
 
 .nav-wrapper {
   min-height: 4.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 .brand {
   font-weight: 800;
   font-size: 1.08rem;
   letter-spacing: 0.2px;
+  white-space: nowrap;
+  flex: 0 0 auto;
+}
+
+/* Header controls: tema e idioma */
+.header-controls {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.theme-toggle {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.theme-toggle:focus {
+  outline: 3px solid rgba(37,99,235,0.18);
+}
+
+#lang-select {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 0.35rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 .menu-toggle {
@@ -192,10 +299,11 @@ p {
   top: 100%;
   margin: 0 auto;
   width: min(1100px, 92%);
-  background: rgba(20, 24, 33, 0.98);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 0.9rem;
   padding: 0.9rem;
+  box-shadow: 0 14px 45px rgba(0, 0, 0, 0.12);
   display: none;
 }
 
@@ -208,23 +316,31 @@ p {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 0.25rem;
 }
 
 .main-nav ul a {
   display: inline-flex;
   align-items: center;
   color: var(--text-muted);
-  padding: 0.45rem 0.4rem;
-  border-radius: 0.4rem;
-  transition: color 0.2s ease, background-color 0.2s ease;
+  padding: 0.55rem 0.85rem;
+  border-radius: 0.65rem;
+  transition: color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  line-height: 1.1;
 }
 
 .main-nav ul a:hover,
-.main-nav ul a:focus-visible,
-.main-nav ul a.active {
+.main-nav ul a:focus-visible {
   color: var(--text);
   background: rgba(124, 156, 255, 0.12);
+}
+
+.main-nav ul a.active {
+  color: var(--text);
+  background: rgba(37, 99, 235, 0.14);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+  box-shadow: inset 0 0 0 1px rgba(37, 99, 235, 0.08);
+  margin: 0;
 }
 
 .btn-cv-nav {
@@ -255,8 +371,8 @@ p {
   justify-self: center;
   padding: 0.7rem;
   border-radius: 50%;
-  border: 1px solid rgba(124, 156, 255, 0.28);
-  background: linear-gradient(135deg, rgba(124, 156, 255, 0.22), rgba(124, 156, 255, 0.05));
+  border: 1px solid rgba(37, 99, 235, 0.28);
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.18), rgba(37, 99, 235, 0.06));
   box-shadow: var(--shadow);
 }
 
@@ -404,8 +520,8 @@ p {
   gap: 0.35rem;
   border-radius: 1rem;
   border: 1px solid var(--border);
-  background: rgba(15, 17, 23, 0.45);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  background: var(--surface-overlay);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
@@ -415,9 +531,9 @@ p {
   width: 100%;
   appearance: none;
   -webkit-appearance: none;
-  border: 1px solid rgba(124, 156, 255, 0.22);
+  border: 1px solid var(--border);
   border-radius: 0.75rem;
-  background: rgba(29, 35, 48, 0.92);
+  background: var(--surface);
   color: var(--text);
   padding: 0 1rem;
   font: inherit;
@@ -434,9 +550,9 @@ p {
   align-items: center;
   justify-content: center;
   flex: none;
-  border: 1px solid rgba(124, 156, 255, 0.32);
+  border: 1px solid rgba(37, 99, 235, 0.28);
   border-radius: 0.75rem;
-  background: linear-gradient(180deg, rgba(124, 156, 255, 0.2), rgba(124, 156, 255, 0.1));
+  background: rgba(37, 99, 235, 0.08);
   color: var(--text);
   cursor: pointer;
   padding: 0;
@@ -596,11 +712,11 @@ p {
   }
 }
 
-@media (min-width: 960px) {
+@media (min-width: 1180px) {
   .menu-toggle {
     display: none;
   }
-
+ 
   .main-nav {
     position: static;
     width: auto;
@@ -611,17 +727,37 @@ p {
     align-items: center;
     gap: 1.1rem;
     padding: 0;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+   
+  .header-controls {
+    order: 2;
+    margin-left: auto;
+    flex: 0 0 auto;
+    white-space: nowrap;
   }
 
   .main-nav ul {
     display: flex;
     align-items: center;
-    gap: 0.3rem;
+    min-width: 0;
+    padding-left: 0.35rem;
+  }
+
+  .main-nav ul a {
+    white-space: nowrap;
+  }
+
+  .main-nav ul a:first-child.active {
+    margin-left: 0.35rem;
   }
 
   .btn-cv-nav {
     margin: 0;
     width: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 }
 /* Custom styles extracted from inline <style> blocks in HTML files

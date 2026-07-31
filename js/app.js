@@ -1,5 +1,24 @@
-// Lógica principal de navegación e interacciones suaves.
+// app.js - central entry: initializa theme, language y lógica de UI general
 document.addEventListener("DOMContentLoaded", () => {
+  // Inicializar Theme y Language (si están disponibles)
+  if (window.Theme && typeof window.Theme.init === 'function') {
+    window.Theme.init();
+  }
+
+  if (window.Language && typeof window.Language.init === 'function') {
+    window.Language.init();
+  }
+
+  const getT = (key) => {
+    try {
+      const lang = window.Language ? window.Language.current : 'es';
+      const text = window.translations && window.translations[lang] ? window.translations[lang][key] : undefined;
+      return typeof text === 'string' ? text : '';
+    } catch (e) {
+      return '';
+    }
+  };
+
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".main-nav");
   const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
@@ -10,15 +29,19 @@ document.addEventListener("DOMContentLoaded", () => {
     yearNode.textContent = String(new Date().getFullYear());
   }
 
+  // Set initial aria-label for menu button using translations when available
+  if (menuButton) {
+    menuButton.setAttribute('aria-label', getT('nav.open_menu') || menuButton.getAttribute('aria-label'));
+  }
+
   // Menú hamburguesa para mobile.
   if (menuButton && nav) {
     menuButton.addEventListener("click", () => {
       const isOpen = nav.classList.toggle("open");
       menuButton.setAttribute("aria-expanded", String(isOpen));
-      menuButton.setAttribute(
-        "aria-label",
-        isOpen ? "Cerrar menú de navegación" : "Abrir menú de navegación"
-      );
+
+      // Update accessible label using translations
+      menuButton.setAttribute('aria-label', isOpen ? getT('nav.close_menu') : getT('nav.open_menu'));
     });
   }
 
@@ -44,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       if (menuButton) {
         menuButton.setAttribute("aria-expanded", "false");
-        menuButton.setAttribute("aria-label", "Abrir menú de navegación");
+        menuButton.setAttribute('aria-label', getT('nav.open_menu'));
       }
     });
   });
@@ -70,25 +93,42 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Estado activo de links del nav según la sección visible.
-  if (sections.length > 0 && navLinks.length > 0 && "IntersectionObserver" in window) {
-    const sectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const currentId = `#${entry.target.id}`;
-            navLinks.forEach((navLink) => {
-              navLink.classList.toggle("active", navLink.getAttribute("href") === currentId);
-            });
-          }
-        });
-      },
-      {
-        threshold: 0.45,
-        rootMargin: "-15% 0px -45% 0px",
-      }
-    );
+  if (sections.length > 0 && navLinks.length > 0) {
+    const getCurrentSectionId = () => {
+      const viewportAnchor = window.scrollY + window.innerHeight * 0.3;
+      let currentSection = sections[0];
 
-    sections.forEach((section) => sectionObserver.observe(section));
+      sections.forEach((section) => {
+        const sectionTop = window.scrollY + section.getBoundingClientRect().top;
+        if (sectionTop <= viewportAnchor) {
+          currentSection = section;
+        }
+      });
+
+      return currentSection.id;
+    };
+
+    const updateActiveNav = () => {
+      const currentId = `#${getCurrentSectionId()}`;
+      navLinks.forEach((navLink) => {
+        navLink.classList.toggle("active", navLink.getAttribute("href") === currentId);
+      });
+    };
+
+    let scrollPending = false;
+    const onScroll = () => {
+      if (!scrollPending) {
+        scrollPending = true;
+        window.requestAnimationFrame(() => {
+          updateActiveNav();
+          scrollPending = false;
+        });
+      }
+    };
+
+    updateActiveNav();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", updateActiveNav);
   }
 
   const copyEmailButton = document.querySelector("[data-copy-email]");
