@@ -1,4 +1,4 @@
-// app.js - central entry: initializa theme, language y lógica de UI general
+// app.js - entrada central: inicializa theme, language y lógica de UI general
 document.addEventListener("DOMContentLoaded", () => {
   // Inicializar Theme y Language (si están disponibles)
   if (window.Theme && typeof window.Theme.init === 'function') {

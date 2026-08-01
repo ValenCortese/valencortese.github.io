@@ -18,7 +18,7 @@ window.translations = {
     "btn.theme_toggle": "Cambiar tema",
     "btn.download_cv": "Descargar CV",
     "btn.view_projects": "Ver proyectos",
-    "btn.more_projects": "Ver más",
+    "btn.more_projects": "Ver más proyectos",
 
     "language.label": "Idioma",
     "projects.back": "‹ Volver al inicio",
@@ -37,11 +37,7 @@ window.translations = {
 
     "project2.title": "Pokemon API",
     "project2.role": "Backend & DevOps",
-    "project2.detail1": "Desarrollo de API REST con Node.js y Express.",
-    "project2.detail2": "Docker, Docker Compose y despliegue automatizado mediante GitHub Actions.",
-    "project2.detail3": "Testing con Jest y Supertest.",
-    "project2.detail4": "Observabilidad con OpenTelemetry + Grafana Cloud (logs, métricas y trazas).",
-    "project2.detail5": "Consumo de PokéAPI y despliegue en Render.",
+    "project2.description": "API REST desarrollada con Node.js y Express para consultar información de Pokémon consumiendo la PokéAPI, integrando prácticas modernas de DevOps, CI/CD, Docker y observabilidad con OpenTelemetry + Grafana Cloud.",
     "project2.badge1": "Node.js",
     "project2.badge2": "Express",
     "project2.badge3": "Docker",
@@ -95,7 +91,7 @@ window.translations = {
 
     "education.item1.school": "Universidad de Palermo",
     "education.item1.degree": "Licenciatura en Tecnología de la Información",
-    "education.item1.period": "mar. 2026 – dic. 2027 · CABA",
+    "education.item1.period": "mar. 2026 – dic. 2027 · Palermo, CABA",
     "education.item2.school": "Escuela Da Vinci",
     "education.item2.degree": "Técnico Superior en Análisis de Sistemas",
     "education.item2.period": "mar. 2022 – dic. 2025 · Balvanera, CABA",
@@ -146,7 +142,7 @@ window.translations = {
     "btn.theme_toggle": "Toggle theme",
     "btn.download_cv": "Download CV",
     "btn.view_projects": "View projects",
-    "btn.more_projects": "See more",
+    "btn.more_projects": "See more projects",
 
     "language.label": "Language",
     "projects.back": "‹ Back to home",
@@ -165,11 +161,7 @@ window.translations = {
 
     "project2.title": "Pokemon API",
     "project2.role": "Backend & DevOps",
-    "project2.detail1": "API REST development with Node.js and Express.",
-    "project2.detail2": "Docker, Docker Compose and automated deployment with GitHub Actions.",
-    "project2.detail3": "Testing with Jest and Supertest.",
-    "project2.detail4": "Observability with OpenTelemetry + Grafana Cloud (logs, metrics and traces).",
-    "project2.detail5": "Consumes PokéAPI and deploys on Render.",
+    "project2.description": "REST API developed with Node.js and Express to query Pokémon information by consuming the PokéAPI, integrating modern DevOps practices, CI/CD, Docker and observability with OpenTelemetry + Grafana Cloud.",
     "project2.badge1": "Node.js",
     "project2.badge2": "Express",
     "project2.badge3": "Docker",
@@ -223,7 +215,7 @@ window.translations = {
 
     "education.item1.school": "University of Palermo",
     "education.item1.degree": "Bachelor in Information Technology",
-    "education.item1.period": "Mar 2026 – Dec 2027 · CABA",
+    "education.item1.period": "Mar 2026 – Dec 2027 · Palermo, CABA",
     "education.item2.school": "Da Vinci School",
     "education.item2.degree": "Advanced Technician in Systems Analysis",
     "education.item2.period": "Mar 2022 – Dec 2025 · Balvanera, CABA",

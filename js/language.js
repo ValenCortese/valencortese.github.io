@@ -1,7 +1,7 @@
 /* language.js
    Responsable de aplicar traducciones definidas en translations.js
    - Lee y escribe localStorage (key: site-language)
-   - Aplica traducciones al contenido y a atributos (placeholder, title, alt, aria-label, value)
+   - Aplica traducciones al contenido y a atributos
    - Expone Language.init() para iniciar desde app.js
 */
 (function (global) {
@@ -22,7 +22,7 @@
     try {
       localStorage.setItem(STORAGE_KEY, lang);
     } catch (e) {
-      // ignore
+
     }
   }
 
